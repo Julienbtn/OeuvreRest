@@ -14,7 +14,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-
+*/*.iml
 */.idea/*
 */build/*
 */.settings/*
@@ -24,7 +24,8 @@ hs_err_pid*
 ClientWebserviceRestfulV1/target/*
 WebServiceRestful/target/*
 
-ClientWebserviceRestfulV1//build/*
+
+ClientWebserviceRestfulV1/build/*
 WebServiceRestful/build/*
 
 ClientWebserviceRestfulV1/classes/*

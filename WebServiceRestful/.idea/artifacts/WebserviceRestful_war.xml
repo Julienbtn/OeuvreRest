@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" build-on-make="true" name="WebserviceRestful:war">
+  <artifact type="war" name="WebserviceRestful:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="WebserviceRestful-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="WebserviceRestful:war exploded" />
