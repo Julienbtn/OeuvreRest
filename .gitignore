@@ -15,8 +15,17 @@
 hs_err_pid*
 
 
-.idea/*
-build/*
-.settings/*
-.classpath
+*/.idea/*
+*/build/*
+*/.settings/*
+*/.classpath
+*/.project
+*/.tern-project
+ClientWebserviceRestfulV1/target/*
+WebServiceRestful/target/*
 
+ClientWebserviceRestfulV1//build/*
+WebServiceRestful/build/*
+
+ClientWebserviceRestfulV1/classes/*
+WebServiceRestful/classes/*
