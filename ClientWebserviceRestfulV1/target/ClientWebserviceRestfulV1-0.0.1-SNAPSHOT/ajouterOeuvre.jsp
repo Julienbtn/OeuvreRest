@@ -20,10 +20,10 @@
                         <li><b>Titre  :</b> <input type="text" name="txtTitre" value="" /></li>
                         <li><b>Etat  :</b> <input type="text" name="txtEtat" value="" /></li>
                         <li><b>Prix :</b> <input type="text" name="txtPrix" value ="" /></li>
-                        <li><b>id Proriétaire :</b> <input type="text" name="txtIdProprietaire" value ="}" /></li>
+                        <li><b>id Proriétaire :</b> <input type="text" name="txtIdProprietaire" value ="" /></li>
 
                     </ul>
-                    <input type="submit" value="Modifier" />
+                    <input type="submit" value="Ajouter" />
                 </div>
 
             </form>

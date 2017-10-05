@@ -172,7 +172,7 @@ public class WService {
 	}
 
 	//****************************
-	// Recherche d'un pro^priétaire
+	// Recherche d'un propriétaire
 	//****************************
 
 	public Proprietaire rechercherProprietaire(int  id) throws MonException
@@ -263,7 +263,12 @@ public class WService {
 					uneOeu.getEtat(),
 					uneOeu.getPrix(),
 					uneOeu.getidproprietaire()
-			);
+			);/*
+			mysql = "INSERT INTO adherent (id_oeuvrevente, titre_oeuvrevente, etat_oeuvrevente,prix_oeuvrevente,id_proprietaireIndex) ";
+			mysql += " VALUES ( \'" + uneOeu.getIdentifiant()+ "\', \'" + uneOeu.getTitre();
+			mysql+="  \', \'"  + uneOeu.getEtat() +  "\',\'"+uneOeu.getEtat();
+			mysql+="\',\'"+uneOeu.getPrix()+  "\',\'"+uneOeu.getidproprietaire()+"\' ";
+			*/
 			unDialogueBd.insertionBD(mysql);
 
 		} catch (MonException e) {

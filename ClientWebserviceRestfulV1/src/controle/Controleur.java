@@ -99,12 +99,13 @@ public class Controleur extends HttpServlet {
 				String ressource = "/Adherents/ajout/" + unAdherent;
 				Appel unAppel = new Appel();
 				reponse = unAppel.postJson(ressource, unAdherent);
+				destinationPage = "/index.jsp";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
 			}
-			destinationPage = "/index.jsp";
+
 		} else if (SUPPRIMER_ADHERENT.equals(actionName)) {
 			try {
 				String idAdh = request.getParameter("id");
