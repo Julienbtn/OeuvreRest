@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-ear" name="ClientWebserviceRestfulV1:war">
+  <artifact type="war" name="ClientWebserviceRestfulV1:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="root">
+    <root id="archive" name="ClientWebserviceRestfulV1-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="ClientWebserviceRestfulV1:war exploded" />
     </root>
   </artifact>

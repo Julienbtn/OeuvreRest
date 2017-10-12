@@ -16,7 +16,7 @@
             <form method="post" action="Controleur?action=insererOeuvre">
                 <div>
                     <ul>
-                        <li><b>ID :</b><input type="text" name="txtId" value="" readonly/> </li>
+                        <li><b>ID :</b><input type="number" name="txtId" value="" /> </li> <%--readonly --%>
                         <li><b>Titre  :</b> <input type="text" name="txtTitre" value="" /></li>
                         <li><b>Etat  :</b> <input type="text" name="txtEtat" value="" /></li>
                         <li><b>Prix :</b> <input type="text" name="txtPrix" value ="" /></li>

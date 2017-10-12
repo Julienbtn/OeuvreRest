@@ -170,7 +170,6 @@ public class Controleur extends HttpServlet {
 
 				destinationPage = "/index.jsp";
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
 			}
@@ -190,7 +189,6 @@ public class Controleur extends HttpServlet {
 
 				destinationPage = "/index.jsp";
 			}catch (Exception e){
-				// TODO Auto-generated catch block
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
 			}
