@@ -32,3 +32,4 @@ ClientWebserviceRestfulV1/classes/*
 WebServiceRestful/classes/*
 
 */*.class
+*/workspace.xml
