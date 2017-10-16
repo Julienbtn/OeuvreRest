@@ -28,14 +28,16 @@ public class DialogueBd {
 			Statement unstatement = cnx.createStatement();
 			unstatement.execute(mysql);
 			System.out.println("Insertion ex�cut�e");
-			// on ferme la connexion
-			cnx.close();
-		} catch (SQLException e)
-
-		{
+		} catch (SQLException e) {
 			System.out.println("Erreur :" + e.getMessage());
 			System.out.println(mysql);
-			new MonException(e.getMessage());
+			throw new MonException(e.getMessage());
+		} finally {
+			if (cnx != null) {
+				try {
+					cnx.close();
+				} catch (SQLException ignored) { }
+			}
 		}
 	}
 

@@ -96,10 +96,10 @@ public class Appel {
 	               .delete();
 	             
 		 if(response.getStatus() >= 200 && response.getStatus() <= 299) {
-			 return "Mise à  jour effectuÃ©e";
+			 return "Mise ï¿½ jour effectuÃ©e";
 		 }
 		 else {
-			 return "Echec mise à jour";
+			 return "Echec mise ï¿½ jour";
 		 }
 	}
 	

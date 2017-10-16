@@ -8,14 +8,14 @@
 			<div id="contenu">
 			<P align="center">
 					<FONT face="Arial" size="5" color="#004080"> <STRONG>Listing&nbsp;des
-								Adhérents </STRONG></FONT>
+								Adhï¿½rents </STRONG></FONT>
 				</P>
 				<TABLE BORDER="1">
-					<CAPTION>Tableau des Adhérents</CAPTION>
+					<CAPTION>Tableau des Adhï¿½rents</CAPTION>
 					<TR>
 						<TH>Numero</TH>
 						<TH>Nom</TH>
-						<TH>Prénom</TH>
+						<TH>Prï¿½nom</TH>
 						<TH>Ville</TH>
 
 					</TR>

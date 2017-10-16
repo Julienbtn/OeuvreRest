@@ -78,11 +78,10 @@ public class Controleur extends HttpServlet {
 				Gson gson = new Gson();
 				List<Adherent> json = gson.fromJson(reponse, List.class);
 				request.setAttribute("mesAdherents", json);
-
 				destinationPage = "/listerAdherent.jsp";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				destinationPage = "/index.jsp";
+				destinationPage = "/erreur.jsp";
 				request.setAttribute("MesErreurs", e.getMessage());
 			}
 
@@ -108,7 +107,7 @@ public class Controleur extends HttpServlet {
 
 		} else if (SUPPRIMER_ADHERENT.equals(actionName)) {
 			try {
-				String idAdh = request.getParameter("id");
+				int idAdh = (int) Double.parseDouble(request.getParameter("id"));
 				String ressource = "/Adherents/delete/" + idAdh;
 				Appel unAppel = new Appel();
 				reponse = unAppel.deleteJson(ressource);
@@ -131,7 +130,7 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/rechercherOeuvre.jsp";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				destinationPage = "/index.jsp";
+				destinationPage = "/erreur.jsp";
 				request.setAttribute("MesErreurs", e.getMessage());
 			}
 		} else if (RECHERCHER_OEUVRE.equals(actionName)) {
@@ -164,7 +163,7 @@ public class Controleur extends HttpServlet {
 				uneOeuvre.setTitre(request.getParameter("txtTitre"));
 				uneOeuvre.setEtat(request.getParameter("txtEtat"));
 				uneOeuvre.setPrix(Float.parseFloat(request.getParameter("txtPrix")));
-				String ressource = "/Oeuvres/" + uneOeuvre;
+				String ressource = "/Oeuvres/edit/" + uneOeuvre.getIdentifiant();
 				Appel unAppel = new Appel();
 				reponse = unAppel.putJson(ressource, uneOeuvre);
 

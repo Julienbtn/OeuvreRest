@@ -30,3 +30,5 @@ WebServiceRestful/build/*
 
 ClientWebserviceRestfulV1/classes/*
 WebServiceRestful/classes/*
+
+*/*.class

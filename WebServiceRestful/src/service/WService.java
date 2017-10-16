@@ -1,10 +1,14 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Request;
+
 import com.google.gson.Gson;
 
 
@@ -22,7 +26,7 @@ public class WService {
 	@POST
 	@Path("/Adherents/ajout/{unAdh}")
 	@Consumes("application/json")
-	public void insertionAdherent(String unAdherent) throws MonException {
+	public void insertionAdherent(String unAdherent, Request request) throws MonException {
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
 		Gson gson = new Gson();
 		Adherent unAdh = gson.fromJson(unAdherent, Adherent.class);
@@ -36,6 +40,14 @@ public class WService {
 		} catch (MonException e) {
 			throw e;
 		}
+	}
+
+	@DELETE
+	@Path("/Adherents/delete/{id}")
+	public void suppressionAdherant(@PathParam("id") String id) throws MonException {
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		String mysql = String.format("delete from adherent where id_adherent = %d;", Integer.parseInt(id));
+		unDialogueBd.insertionBD(mysql);
 	}
 
 
@@ -109,6 +121,34 @@ public class WService {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
 		return json;
+	}
+
+	@PUT
+	@Path("/Oeuvres/edit/{Id}")
+	@Consumes("application/json")
+	public void modifierOeuvre(String jsonOeuvre, @PathParam("Id") String idOeuvre) throws MonException, Exception
+	{
+		String mysql;
+		try
+		{
+			HashMap<String, Object> data = (new Gson()).fromJson(jsonOeuvre, HashMap.class);
+			mysql = String.format(
+						"update Oeuvrevente set titre_oeuvrevente = \"%s\", etat_oeuvrevente = \"%s\", " +
+						"prix_oeuvrevente = \"%f\" where id_oeuvrevente = %d",
+						data.get("titre"),
+						data.get("etat"),
+						(Double)data.get("prix"),
+						((Double) data.get("identifiant")).intValue()
+					);
+			DialogueBd unDialogueBd = DialogueBd.getInstance();
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e)
+		{
+			throw e;
+		}
+		catch (Exception exc) {
+			throw new MonException(exc.getMessage(), "systeme");
+		}
 	}
 
 	@GET
@@ -247,7 +287,7 @@ public class WService {
 	}
 
 	@POST
-	@Path("/Oeuvres/ajout/{uneOeuvre}")
+	@Path("/Oeuvres/ajout/")
 	@Consumes("application/json")
 	public void insertionOeuvre(String uneOeuvre) throws MonException {
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
