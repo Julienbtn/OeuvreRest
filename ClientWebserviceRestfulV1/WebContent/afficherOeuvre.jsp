@@ -27,6 +27,10 @@
 	</div>
 	
 	</form>
+				<form method="post" action="Controleur?action=supprimerOeuvre">
+					<input type="text" name="idOeuvre" value="${uneOeuvre.idOeuvrevente}" readonly="readonly" hidden="hidden" />
+					<input type="submit" value="Supprimer" />
+				</form>
 	
 		</div>
 			<%@ include file="include/footer.jsp"%>

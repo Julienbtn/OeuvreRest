@@ -130,14 +130,37 @@ public class WService {
 		{
 			HashMap<String, Object> data = (new Gson()).fromJson(jsonOeuvre, HashMap.class);
 			mysql = String.format(
-						Locale.US,
-						"update Oeuvrevente set titre_oeuvrevente = \"%s\", etat_oeuvrevente = \"%s\", " +
-						"prix_oeuvrevente = \"%f\" where id_oeuvrevente = %d",
-						data.get("titre"),
-						data.get("etat"),
-						(Double)data.get("prix"),
-						((Double) data.get("identifiant")).intValue()
-					);
+					Locale.US,
+					"update Oeuvrevente set titre_oeuvrevente = \"%s\", etat_oeuvrevente = \"%s\", " +
+							"prix_oeuvrevente = \"%f\" where id_oeuvrevente = %d",
+					data.get("titre"),
+					data.get("etat"),
+					(Double)data.get("prix"),
+					((Double) data.get("identifiant")).intValue()
+			);
+			DialogueBd unDialogueBd = DialogueBd.getInstance();
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e)
+		{
+			throw e;
+		}
+		catch (Exception exc) {
+			throw new MonException(exc.getMessage(), "systeme");
+		}
+	}
+
+	@DELETE
+	@Path("/Oeuvres/delete/{Id}")
+	public void supprimerOeuvre(String jsonOeuvre, @PathParam("Id") int idOeuvre) throws MonException, Exception
+	{
+		String mysql;
+		try
+		{
+			mysql = String.format(
+				Locale.US,
+				"delete from oeuvrevente where id_oeuvrevente = %d",
+				idOeuvre
+			);
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
 			unDialogueBd.insertionBD(mysql);
 		} catch (MonException e)
@@ -284,7 +307,7 @@ public class WService {
 		}
 	}
 
-	@POST
+	@PUT
 	@Path("/Oeuvres/ajout/")
 	@Consumes("application/json")
 	public void insertionOeuvre(String uneOeuvre) throws MonException {
@@ -292,11 +315,10 @@ public class WService {
 		Gson gson = new Gson();
 		Oeuvre uneOeu = gson.fromJson(uneOeuvre, Oeuvre.class);
 		try {
-			String mysql = "";
-			mysql = String.format(
-					"INSERT INTO oeuvre (id_oeuvrevente, titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, " +
-							"id_proprietaireIndex) VALUES(%d, '%s', '%s', %f, %d)",
-					uneOeu.getIdentifiant(),
+			String mysql = String.format(
+					Locale.US,
+					"INSERT INTO Oeuvrevente (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, " +
+							"id_proprietaire) VALUES('%s', '%s', %f, %d)",
 					uneOeu.getTitre(),
 					uneOeu.getEtat(),
 					uneOeu.getPrix(),
@@ -312,6 +334,28 @@ public class WService {
 		} catch (MonException e) {
 			throw e;
 		}
+	}
+
+
+	@GET
+	@Path("/proprietaire")
+	@Produces("application/json")
+	public String listerProprietaires() {
+		DialogueBd dialogue = DialogueBd.getInstance();
+		 List<Proprietaire> proprietaires = new ArrayList<>();
+		try {
+			List<Object> elements = dialogue.lecture("select * from proprietaire");
+			for (int i = 0; i < elements.size(); i += 3) {
+				proprietaires.add(new Proprietaire(
+						((Long) elements.get(i)).intValue(),
+						(String) elements.get(i+1),
+						(String) elements.get(i+2)
+				));
+			}
+		} catch (MonException e) {
+			e.printStackTrace();
+		}
+		return new Gson().toJson(proprietaires);
 	}
 
 

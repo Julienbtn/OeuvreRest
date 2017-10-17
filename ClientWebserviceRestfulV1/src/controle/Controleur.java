@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 
 import consommation.Appel;
 import metier.*;
-import meserreurs.*;
 
 /**
  * Servlet implementation class Controleur
@@ -23,7 +22,7 @@ import meserreurs.*;
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String ACTION_TYPE = "action";
-	private static final String LISTER_RADHERENT = "listerAdherent";
+	private static final String LISTER_ADHERENT = "listerAdherent";
 	private static final String AJOUTER_ADHERENT = "ajouterAdherent";
 	private static final String INSERER_ADHERENT = "insererAdherent";
 	private static final String SUPPRIMER_ADHERENT = "supprimerAdherent";
@@ -31,6 +30,7 @@ public class Controleur extends HttpServlet {
 	private static final String RECHERCHER_OEUVRE = "rechercherOeuvre";
 	private static final String AJOUTER_OEUVRE = "ajouterOeuvre";
 	private static final String INSERER_OEUVRE = "insererOeuvre";
+	private static final String SUPPRIMER_OEUVRE = "supprimerOeuvre";
 	private static final String MODIFIER_OEUVRE = "modifierOeuvre";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
@@ -69,7 +69,7 @@ public class Controleur extends HttpServlet {
 		String destinationPage = ERROR_PAGE;
 		String reponse;
 		// execute l'action
-		if (LISTER_RADHERENT.equals(actionName)) {
+		if (LISTER_ADHERENT.equals(actionName)) {
 			String ressource = "/Adherents";
 			try {
 
@@ -173,16 +173,19 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/erreur.jsp";
 			}
 		} else if (AJOUTER_OEUVRE.equals(actionName)){
+			String jsonProprietaires = (new Appel()).appelJson("/proprietaire");
+			List<Object> proprietaires = new Gson().fromJson(jsonProprietaires, List.class);
+			request.setAttribute("proprietaires", proprietaires);
 			destinationPage = "/ajouterOeuvre.jsp";
 		} else if (INSERER_OEUVRE.equals(actionName)){
 			try {
 				Oeuvre uneOeuvre = new Oeuvre();
-				uneOeuvre.setIdentifiant(Integer.parseInt(request.getParameter("txtId")));
+				uneOeuvre.setIdentifiant(0);
 				uneOeuvre.setTitre(request.getParameter("txtTitre"));
 				uneOeuvre.setEtat(request.getParameter("txtEtat"));
 				uneOeuvre.setPrix(Float.parseFloat(request.getParameter("txtPrix")));
-				uneOeuvre.setidproprietaire(Integer.parseInt(request.getParameter("txtIdProprietaire")));
-				String ressource = "/Oeuvres/ajout/" + uneOeuvre;
+				uneOeuvre.setidproprietaire((int) Float.parseFloat(request.getParameter("txtIdProprietaire")));
+				String ressource = "/Oeuvres/ajout/";
 				Appel unAppel = new Appel();
 				reponse = unAppel.putJson(ressource, uneOeuvre);
 
@@ -191,6 +194,15 @@ public class Controleur extends HttpServlet {
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
 			}
+		} else if (SUPPRIMER_OEUVRE.equals(actionName)) {
+			try {
+				new Appel().deleteJson("/Oeuvres/delete/" + request.getParameter("idOeuvre"));
+				destinationPage = "/index.jsp";
+			} catch (Exception e) {
+				request.setAttribute("MesErreurs", e.getMessage());
+				destinationPage = "/erreur.jsp";
+			}
+
 		}
 			else {
 				String messageErreur = "[" + actionName + "] n'est pas une action valide.";
