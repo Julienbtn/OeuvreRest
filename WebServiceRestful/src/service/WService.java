@@ -1,9 +1,6 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 
 import javax.ws.rs.*;
@@ -26,7 +23,7 @@ public class WService {
 	@POST
 	@Path("/Adherents/ajout/{unAdh}")
 	@Consumes("application/json")
-	public void insertionAdherent(String unAdherent, Request request) throws MonException {
+	public void insertionAdherent(String unAdherent) throws MonException {
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
 		Gson gson = new Gson();
 		Adherent unAdh = gson.fromJson(unAdherent, Adherent.class);
@@ -133,6 +130,7 @@ public class WService {
 		{
 			HashMap<String, Object> data = (new Gson()).fromJson(jsonOeuvre, HashMap.class);
 			mysql = String.format(
+						Locale.US,
 						"update Oeuvrevente set titre_oeuvrevente = \"%s\", etat_oeuvrevente = \"%s\", " +
 						"prix_oeuvrevente = \"%f\" where id_oeuvrevente = %d",
 						data.get("titre"),
