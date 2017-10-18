@@ -16,9 +16,9 @@
             <form method="post" action="Controleur?action=insererOeuvre">
                 <div>
                     <ul>
-                        <li><b>Titre  :</b> <input type="text" name="txtTitre" value="" /></li>
-                        <li><b>Etat  :</b> <input type="text" name="txtEtat" value="" /></li>
-                        <li><b>Prix :</b> <input type="text" name="txtPrix" value ="" /></li>
+                        <li><b>Titre  :</b> <input type="text" required name="txtTitre" value="" /></li>
+                        <li><b>Etat  :</b> <input type="text" required name="txtEtat" value="" /></li>
+                        <li><b>Prix :</b> <input type="text" required name="txtPrix" value ="" /></li>
                         <li><b>id Proriétaire :</b>
                             <select name="txtIdProprietaire">
                                 <c:forEach var="prop" items="${proprietaires}">
