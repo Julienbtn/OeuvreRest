@@ -20,7 +20,7 @@
 		<li><b>Titre  :</b> <input type="text" name="txtTitre" value="${uneOeuvre.titreOeuvrevente}" /></li>
 		<li><b>Etat  :</b> <input type="text" name="txtEtat" value="${uneOeuvre.etatOeuvrevente}" /></li>
 		<li><b>Prix :</b> <input type="text" name="txtPrix" value ="${uneOeuvre.prixOeuvrevente}" /></li>
-		<li><b>Nom Prori�taire :</b> ${uneOeuvre.proprietaire.nomProprietaire}</li>
+		<li><b>Nom Proriétaire :</b> ${uneOeuvre.proprietaire.nomProprietaire}</li>
 	
 	</ul>
 	<input type="submit" value="Modifier" />

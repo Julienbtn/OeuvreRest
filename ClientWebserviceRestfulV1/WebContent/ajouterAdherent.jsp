@@ -6,7 +6,7 @@
 			<%@ include file="include/bandeaudroite.jsp"%>
 
 			<div id="contenu">
-				<H1>Ajout d'un adhérent</H1>
+				<H1>Ajout d'un adhï¿½rent</H1>
 
 				<DIV align="center">
 					<FORM name='identification' method="post"

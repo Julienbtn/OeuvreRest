@@ -1,7 +1,7 @@
 <%@page import="java.util.Date,java.text.*"%>
 <div id="bandeauDroite">
 	<div id="contenuBandeauDroite">
-		<img src="images/date.png" alt="Nouveautés  de Lyon" /><br />
+		<img src="images/date.png" alt="NouveautÃ©s  de Lyon" /><br />
 		<div id="texteDate">
 			<br /> Nous sommes le
 			<%=DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL).format(new Date())%>
