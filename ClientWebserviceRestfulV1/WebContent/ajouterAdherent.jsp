@@ -6,7 +6,8 @@
 			<%@ include file="include/bandeaudroite.jsp"%>
 
 			<div id="contenu">
-				<H1>Ajout d'un adh�rent</H1>
+
+				<H1>Ajout d'un adhérent</H1>
 
 				<DIV align="center">
 					<FORM name='identification' method="post"
@@ -16,14 +17,14 @@
 							<FONT face="Arial" color="#004080"></FONT> <FONT face="Arial"
 								color="#004080"> <BR>&nbsp; &nbsp; &nbsp; Nom de
 								l'adherent :
-							</FONT> <INPUT type="text" name="txtnom" value="" id="nom"> <BR>
+							</FONT> <INPUT type="text" required name="txtnom" value="" id="nom"> <BR>
 							<FONT face="Arial" color="#004080"> <BR>Prenom de
 								l'adherent :
-							</FONT> <INPUT type="text" name="txtprenom" id="prenom"> <BR>
+							</FONT> <INPUT type="text" required name="txtprenom" id="prenom"> <BR>
 
 							<FONT face="Arial" color="#004080"> <BR>&nbsp; &nbsp;
 								&nbsp; Ville de l'adherent :
-							</FONT> <INPUT type="text" name="txtville" id="ville"> <FONT
+							</FONT> <INPUT type="text" required name="txtville" id="ville"> <FONT
 								face="Arial" color="#004080"> <BR></FONT><BR>
 
 							<!-- Boutons Ajouter -->
