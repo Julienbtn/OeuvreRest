@@ -13,7 +13,7 @@
 			<TABLE BORDER="1">
 				<CAPTION>Tableau des Adhérents</CAPTION>
 				<TR>
-					<TH>Numero</TH>4
+					<TH>Numero</TH>
 					<TH>Nom</TH>
 					<TH>Prénom</TH>
 					<TH>Ville</TH>

@@ -2,16 +2,13 @@ package controle;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
-
 import consommation.Appel;
 import metier.*;
 
@@ -173,11 +170,13 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/erreur.jsp";
 			}
 		} else if (AJOUTER_OEUVRE.equals(actionName)){
+			// méthode qui permet d'ajouter une nouvelle oeuvre en cliquant sur le bouton ajouter dans le menu rechercher
 			String jsonProprietaires = (new Appel()).appelJson("/proprietaire");
 			List<Object> proprietaires = new Gson().fromJson(jsonProprietaires, List.class);
 			request.setAttribute("proprietaires", proprietaires);
 			destinationPage = "/ajouterOeuvre.jsp";
 		} else if (INSERER_OEUVRE.equals(actionName)){
+			// méthode qui permet d'ajouter une nouvelle oeuvre dans le menu affichage
 			try {
 				Oeuvre uneOeuvre = new Oeuvre();
 				uneOeuvre.setIdentifiant(0);
@@ -195,6 +194,7 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/erreur.jsp";
 			}
 		} else if (SUPPRIMER_OEUVRE.equals(actionName)) {
+			// méthode qui permet de supprimer une oeuvre après avoir sélectionner une oeuvre et cliquer sur le bouton rechercher
 			try {
 				new Appel().deleteJson("/Oeuvres/delete/" + request.getParameter("idOeuvre"));
 				destinationPage = "/index.jsp";

@@ -1,24 +1,18 @@
 package service;
 
 import java.util.*;
-
-
 import javax.ws.rs.*;
-import javax.ws.rs.core.Request;
-
 import com.google.gson.Gson;
-
-
 import meserreurs.MonException;
 import metier.*;
 import persistance.DialogueBd;
 
+
 @Path("/mediatheque")
 public class WService {
 
-
 	/***************************************************/
-	/***************Partie sur les adh�rents **************/
+	/***************Partie sur les adhérents **************/
 	/*****************************************************/
 	@POST
 	@Path("/Adherents/ajout/{unAdh}")
@@ -39,6 +33,7 @@ public class WService {
 		}
 	}
 
+	// méthode qui permet de supprimer des adhérents
 	@DELETE
 	@Path("/Adherents/delete/{id}")
 	public void suppressionAdherant(@PathParam("id") String id) throws MonException {
@@ -65,7 +60,7 @@ public class WService {
 
 			while (index < rs.size()) {
 
-				// On cr�e un objet Adherent
+				// On crée un objet Adherent
 				Adherent unAdh = new Adherent();
 				unAdh.setIdAdherent(Integer.parseInt(rs.get(index + 0).toString()));
 				unAdh.setNomAdherent(rs.get(index + 1).toString());
@@ -120,6 +115,7 @@ public class WService {
 		return json;
 	}
 
+	//méthode qui permet de modifier une oeuvre
 	@PUT
 	@Path("/Oeuvres/edit/{Id}")
 	@Consumes("application/json")
@@ -149,6 +145,7 @@ public class WService {
 		}
 	}
 
+	//méhode qui permet de supprimer une oeuvre
 	@DELETE
 	@Path("/Oeuvres/delete/{Id}")
 	public void supprimerOeuvre(String jsonOeuvre, @PathParam("Id") int idOeuvre) throws MonException, Exception
@@ -199,7 +196,7 @@ public class WService {
 
 
 	// recherche d'une Oeuvre
-	// On factorise la requ�te qui doit rendre une oeuvre en vente
+	// On factorise la requête qui doit rendre une oeuvre en vente
 	public Oeuvrevente rechercherOeuvre(String requete) throws MonException
 	{
 
@@ -233,7 +230,7 @@ public class WService {
 	}
 
 	//****************************
-	// Recherche d'un propri�taire
+	// Recherche d'un propriétaire
 	//****************************
 
 	public Proprietaire rechercherProprietaire(int  id) throws MonException
@@ -273,7 +270,7 @@ public class WService {
 
 	@GET
 	@Path("/Oeuvres")
-	// r�cup�re la valeur pass�� par webResource.path("hello").path("xxxx")
+	// récupère la valeur passée par webResource.path("hello").path("xxxx")
 	@Produces("application/json")
 	public  String  consulterListeOeuvre() throws MonException {
 		List<Object> rs;
@@ -287,12 +284,12 @@ public class WService {
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
 			rs =unDialogueBd.lecture(mysql);
 			while (index < rs.size()) {
-				// On cr�e un stage
+				// On crée un stage
 				Oeuvrevente uneOeuvre = new Oeuvrevente();
 				// il faut redecouper la liste pour retrouver les lignes
 				uneOeuvre.setIdOeuvrevente(Integer.parseInt(rs.get( index + 0).toString()));
 				uneOeuvre.setTitreOeuvrevente(rs.get( index + 1 ).toString());
-				// On incr�mente tous les 2 champs
+				// On incrémente tous les 2 champs
 				index = index + 2;
 				mesOeuvres.add(uneOeuvre);
 			}
@@ -323,12 +320,7 @@ public class WService {
 					uneOeu.getEtat(),
 					uneOeu.getPrix(),
 					uneOeu.getidproprietaire()
-			);/*
-			mysql = "INSERT INTO adherent (id_oeuvrevente, titre_oeuvrevente, etat_oeuvrevente,prix_oeuvrevente,id_proprietaireIndex) ";
-			mysql += " VALUES ( \'" + uneOeu.getIdentifiant()+ "\', \'" + uneOeu.getTitre();
-			mysql+="  \', \'"  + uneOeu.getEtat() +  "\',\'"+uneOeu.getEtat();
-			mysql+="\',\'"+uneOeu.getPrix()+  "\',\'"+uneOeu.getidproprietaire()+"\' ";
-			*/
+			);
 			unDialogueBd.insertionBD(mysql);
 
 		} catch (MonException e) {
@@ -336,7 +328,7 @@ public class WService {
 		}
 	}
 
-
+// fonction qui permet de lister les différents propriétaire passée en base de données lors de l'insertion d'une oeuvre
 	@GET
 	@Path("/proprietaire")
 	@Produces("application/json")
