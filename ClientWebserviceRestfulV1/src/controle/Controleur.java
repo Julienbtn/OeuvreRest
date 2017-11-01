@@ -191,7 +191,7 @@ public class Controleur extends HttpServlet {
 				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
 			}catch (Exception e){
 				request.setAttribute("MesErreurs", e.getMessage());
-				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
+				destinationPage = "/erreur.jsp";
 			}
 		} else if (SUPPRIMER_OEUVRE.equals(actionName)) {
 			// méthode qui permet de supprimer une oeuvre après avoir sélectionner une oeuvre et cliquer sur le bouton rechercher
