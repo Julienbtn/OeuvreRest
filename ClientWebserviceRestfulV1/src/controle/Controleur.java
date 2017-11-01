@@ -95,7 +95,7 @@ public class Controleur extends HttpServlet {
 				String ressource = "/Adherents/ajout/" + unAdherent;
 				Appel unAppel = new Appel();
 				reponse = unAppel.postJson(ressource, unAdherent);
-				destinationPage = "/index.jsp";
+				destinationPage = "/Controleur?action="+LISTER_ADHERENT;;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				request.setAttribute("MesErreurs", e.getMessage());
@@ -109,7 +109,7 @@ public class Controleur extends HttpServlet {
 				Appel unAppel = new Appel();
 				reponse = unAppel.deleteJson(ressource);
 
-				destinationPage = "/index.jsp";
+				destinationPage = "/Controleur?action="+LISTER_ADHERENT;
 			} catch (Exception e) {
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
@@ -164,7 +164,7 @@ public class Controleur extends HttpServlet {
 				Appel unAppel = new Appel();
 				reponse = unAppel.putJson(ressource, uneOeuvre);
 
-				destinationPage = "/index.jsp";
+				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
 			} catch (Exception e) {
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
@@ -188,16 +188,16 @@ public class Controleur extends HttpServlet {
 				Appel unAppel = new Appel();
 				reponse = unAppel.putJson(ressource, uneOeuvre);
 
-				destinationPage = "/index.jsp";
+				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
 			}catch (Exception e){
 				request.setAttribute("MesErreurs", e.getMessage());
-				destinationPage = "/erreur.jsp";
+				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
 			}
 		} else if (SUPPRIMER_OEUVRE.equals(actionName)) {
 			// méthode qui permet de supprimer une oeuvre après avoir sélectionner une oeuvre et cliquer sur le bouton rechercher
 			try {
 				new Appel().deleteJson("/Oeuvres/delete/" + request.getParameter("idOeuvre"));
-				destinationPage = "/index.jsp";
+				destinationPage = "/Controleur?action="+RECHERCHER_LISTE_OEUVRE;
 			} catch (Exception e) {
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";

@@ -1,4 +1,5 @@
-<div id="footer">
-	<div id="conteneurFooter">� 2016-2017 - Polytech 5A Web Service- Le monde
-		J2EE</div>
+﻿<div id="footer">
+	<div id="conteneurFooter">
+		Réalisé par Bertrand Axel, Bontron Julien, et Varrel Lilian
+	</div>
 </div>

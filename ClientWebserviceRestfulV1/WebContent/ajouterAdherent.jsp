@@ -1,4 +1,4 @@
-<%@ include file="include/header.jsp"%>
+﻿<%@ include file="include/header.jsp"%>
 <body>
 	<div id="site">
 		<%@ include file="include/menu.jsp"%>
