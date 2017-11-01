@@ -20,16 +20,16 @@ public class DialogueBd {
 		super();
 	}
 
-	public void insertionBD(String mysql) throws MonException {
+	public void executionRequete(String mysql) throws MonException {
 		Connection cnx = null;
 		try {
 
 			cnx = Connexion.getInstance().getConnexion();
 			Statement unstatement = cnx.createStatement();
 			unstatement.execute(mysql);
-			System.out.println("Insertion ex�cut�e");
+			System.out.println("Requête exécutée");
 		} catch (SQLException e) {
-			System.out.println("Erreur :" + e.getMessage());
+			System.out.println("Erreur : " + e.getMessage());
 			System.out.println(mysql);
 			throw new MonException(e.getMessage());
 		} finally {

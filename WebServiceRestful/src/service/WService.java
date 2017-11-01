@@ -26,7 +26,7 @@ public class WService {
 			mysql = "INSERT INTO adherent (nom_adherent, prenom_adherent, ville_adherent) ";
 			mysql += " VALUES ( \'" + unAdh.getNomAdherent()+ "\', \'" + unAdh.getPrenomAdherent();
 			mysql+="  \', \'"  + unAdh.getVilleAdherent() +  "\') ";
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 
 		} catch (MonException e) {
 			throw e;
@@ -36,10 +36,10 @@ public class WService {
 	// méthode qui permet de supprimer des adhérents
 	@DELETE
 	@Path("/Adherents/delete/{id}")
-	public void suppressionAdherant(@PathParam("id") String id) throws MonException {
+	public void suppressionAdherent(@PathParam("id") String id) throws MonException {
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
 		String mysql = String.format("delete from adherent where id_adherent = %d;", Integer.parseInt(id));
-		unDialogueBd.insertionBD(mysql);
+		unDialogueBd.executionRequete(mysql);
 	}
 
 
@@ -135,7 +135,7 @@ public class WService {
 					((Double) data.get("identifiant")).intValue()
 			);
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 		} catch (MonException e)
 		{
 			throw e;
@@ -159,7 +159,7 @@ public class WService {
 				idOeuvre
 			);
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 		} catch (MonException e)
 		{
 			throw e;
@@ -321,7 +321,7 @@ public class WService {
 					uneOeu.getPrix(),
 					uneOeu.getidproprietaire()
 			);
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 
 		} catch (MonException e) {
 			throw e;

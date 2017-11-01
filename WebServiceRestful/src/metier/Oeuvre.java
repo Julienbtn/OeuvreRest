@@ -74,7 +74,7 @@ public class Oeuvre {
 			mysql = "INSERT INTO oeuvrevente (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, id_proprietaire) ";
 			mysql = mysql + " VALUES ( \'" + uneOeuvre.getTitre() + "\', \'" + uneOeuvre.getEtat() + "\', " + uneOeuvre.getPrix()
 					+ ", " + uneOeuvre.getidproprietaire()  +")";
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 		} catch (MonException e) {
 			throw e;
 		}
@@ -90,7 +90,7 @@ public class Oeuvre {
 					+ uneOeuvre.getEtat() + "\', " + "prix_oeuvrevente = " + uneOeuvre.getPrix() + ", id_proprietaire = "
 					+ uneOeuvre.getidproprietaire();
 			mysql = mysql + " WHERE  id_oeuvrevente = " + uneOeuvre.getIdentifiant();
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 		} catch (MonException e) {
 			throw e;
 		}
@@ -103,7 +103,7 @@ public class Oeuvre {
 
 			mysql = "DELETE FROM oeuvrevente ";
 			mysql = mysql + " WHERE  id_oeuvrevente = " + uneOeuvre.getIdentifiant();
-			unDialogueBd.insertionBD(mysql);
+			unDialogueBd.executionRequete(mysql);
 
 		} catch (MonException e) {
 			throw e;

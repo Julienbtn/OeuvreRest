@@ -108,8 +108,13 @@ public class Controleur extends HttpServlet {
 				String ressource = "/Adherents/delete/" + idAdh;
 				Appel unAppel = new Appel();
 				reponse = unAppel.deleteJson(ressource);
-
 				destinationPage = "/Controleur?action="+LISTER_ADHERENT;
+
+				if (reponse.startsWith("Echec")){
+					request.setAttribute("MesErreurs", "Impossible de supprimer l'adhérent car celui-ci possède une oeuvre");
+					destinationPage = "/erreur.jsp";
+				}
+
 			} catch (Exception e) {
 				request.setAttribute("MesErreurs", e.getMessage());
 				destinationPage = "/erreur.jsp";
